@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bird Observations</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      background-color: #e3f2fd; /* Light blue background */
+      color: #1e88e5; /* Medium blue text */
+      margin: 0;
+      padding: 10px; /* Reduced padding for smaller screens */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #1e88e5;
+      margin-bottom: 15px; /* Reduced margin */
+      text-align: center; /* Center the title */
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%; /* Take full width on smaller screens */
+      margin-top: 15px; /* Reduced margin */
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid #bbdefb;
+    }
+    thead {
+      background-color: #29b6f6; /* Cyan-blue header */
+      color: white;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    }
+    th {
+      padding: 10px; /* Reduced padding */
+      text-align: left;
+      font-weight: bold;
+      border-bottom: 2px solid #03a9f4;
+    }
+    tbody tr {
+      display: block; /* Stack rows on smaller screens */
+      margin-bottom: 10px; /* Add space between rows */
+      border: 1px solid #bbdefb; /* Add border to individual rows */
+      border-radius: 5px;
+      padding: 10px;
+    }
+    tbody tr:nth-child(even) {
+      background-color: #e1f5fe; /* Very light blue for even "blocks" */
+    }
+    tbody tr:hover {
+      background-color: #64b5f6; /* Medium blue on hover */
+      color: white;
+      cursor: pointer;
+      transform: scale(1.01); /* Subtle scale on hover */
+      transition: transform 0.1s ease-in-out;
+    }
+    td {
+      display: flex; /* Arrange label and value in a row */
+      text-align: left;
+      padding: 8px 10px; /* Further reduced padding */
+    }
+    td:before {
+      content: attr(data-label); /* Show column name as label */
+      font-weight: bold;
+      margin-right: 10px;
+      color: #1e88e5; /* Label color */
+      min-width: 80px; /* Ensure labels don't wrap too much */
+    }
+    td[data-label="Common Name"]:before { content: "Name:"; }
+    td[data-label="Begin Path"]:before { content: "Path:"; }
+    td[data-label="Max Confidence"]:before { content: "Confidence:"; }
+    td[data-label="Play Audio"]:before { content: "Audio:"; }
+    th, td[data-label="Play Audio"] {
+      display: none; /* Hide header and "Play Audio" column by default */
+    }
+    tbody td[data-label="Common Name"],
+    tbody td[data-label="Max Confidence"],
+    tbody td[data-label="Begin Path"],
+    tbody td[data-label="Play Audio"] {
+      display: flex; /* Show these cells */
+      flex-direction: column; /* Stack button and audio player */
+      align-items: stretch; /* Make children take full width */
+    }
+    .play-button {
+      background-color: #4fc3f7; /* Light cyan button */
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 0.9em;
+      transition: background-color 0.2s ease-in-out;
+      margin-bottom: 5px; /* Add some space below the button */
+      width: 100%; /* Make button full width */
+      box-sizing: border-box; /* Ensure padding doesn't increase width */
+    }
+    .play-button:hover {
+      background-color: #03a9f4; /* Darker cyan on hover */
+    }
+    .play-button:disabled {
+      background-color: #b0bec5;
+      cursor: not-allowed;
+    }
+    .audio-container {
+      margin-top: 5px;
+      width: 100%; /* Make container full width */
+      box-sizing: border-box; /* Ensure padding doesn't increase width */
+    }
+    .audio-container audio {
+      width: 100%; /* Make audio player full width */
+      max-width: none; /* Override any max-width */
+      box-sizing: border-box; /* Ensure padding doesn't increase width */
+    }
+
+    /* Media query for larger screens (e.g., tablets, desktops) */
+    @media (min-width: 600px) {
+      table {
+        width: 90%; /* Go back to wider table */
+      }
+      tbody tr {
+        display: table-row; /* Display rows normally */
+        border: none; /* Remove individual row borders */
+        padding: 0;
+      }
+      td {
+        display: table-cell; /* Display cells normally */
+      }
+      td:before {
+        content: ""; /* Hide labels on larger screens */
+        margin-right: 0;
+        min-width: 0;
+      }
+      th, tbody td[data-label="Play Audio"] {
+        display: table-cell; /* Show header and "Play Audio" column */
+        flex-direction: row; /* Reset flex direction */
+        align-items: center; /* Align button and player vertically */
+      }
+      .play-button {
+        margin-right: 10px; /* Add space next to the button */
+        width: auto; /* Reset button width */
+      }
+      .audio-container {
+        width: auto; /* Reset container width */
+      }
+      .audio-container audio {
+        max-width: 300px; /* Limit audio player width on larger screens */
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Bird Observations with High Confidence</h1>
+
+  <% if (birds.length > 0) { %>
+    <table>
+      <thead>
+        <tr>
+          <th>Common Name</th>
+          <th>Begin Path</th>
+	  <th>Begin Time</th>
+	  <th>End Time</th>
+          <th>Max Confidence</th>
+          <th>Play Audio</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% birds.forEach(bird => { %>
+          <tr>
+            <td><%= bird.CommonName %></td>
+            <td><%= bird.BeginPath %></td>
+            <td><%= bird.BeginTime %></td>
+	<td><%= bird.EndTime%></td>
+<td><%= bird.confidence %></td>	
+<td>
+  <% if (bird.audioPathForPlay) { %>
+    <button class="play-button" data-audio-path="<%= bird.audioPathForPlay %>" data-audio-id="audio-<%= bird.BeginPath %>">Play</button>
+    <div class="audio-container">
+      <audio id="audio-<%= bird.BeginPath %>" controls style="width: 100%; max-width: 300px;"></audio>
+    </div>
+  <% } else { %>
+    <button class="play-button" disabled>No Audio</button>
+  <% } %>
+</td>
+</tr>
+<% }); %>
+</tbody>
+</table>
+<% } else { %>
+<p>No bird observations found with the specified criteria.</p>
+<% } %>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const playButtons = document.querySelectorAll('.play-button:not([disabled])');
+    const audioPlayers = {}; // Store references to audio players
+
+    playButtons.forEach(button => {
+      const audioId = button.dataset.audioId;
+      const audioElement = document.getElementById(audioId);
+      if (audioElement) {
+        audioPlayers[audioId] = audioElement;
+      }
+
+      button.addEventListener('click', function() {
+        const audioPath = this.dataset.audioPath;
+        const currentAudioId = this.dataset.audioId;
+        const currentAudioPlayer = audioPlayers[currentAudioId];
+
+        // Pause any other currently playing audio
+        for (const id in audioPlayers) {
+          if (id !== currentAudioId && !audioPlayers[id].paused) {
+            audioPlayers[id].pause();
+            // Optionally reset their currentTime to 0 if desired
+            // audioPlayers[id].currentTime = 0;
+          }
+        }
+
+        if (currentAudioPlayer) {
+          currentAudioPlayer.src = audioPath;
+          currentAudioPlayer.play();
+        }
+      });
+    });
+  });
+</script>
+
+</body>
+</html>

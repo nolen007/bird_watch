@@ -1,0 +1,20 @@
+Model found!
+Found 8 files to analyze
+Species list contains 494 species
+Analyzing /home/blake/birdwatch/2025-04-24_19_00_08.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_07_47.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_09_50.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_14_23.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_16_53.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_17_53.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_23_03.wav
+Analyzing /home/blake/birdwatch/2025-04-24_19_23_39.wav
+Finished /home/blake/birdwatch/2025-04-24_19_07_47.wav in 4.00 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_16_53.wav in 4.21 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_23_03.wav in 4.28 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_17_53.wav in 4.65 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_00_08.wav in 6.37 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_09_50.wav in 6.79 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_14_23.wav in 6.93 seconds
+Finished /home/blake/birdwatch/2025-04-24_19_23_39.wav in 7.93 seconds
+Finished processing all WAV files.

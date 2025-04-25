@@ -1,0 +1,26 @@
+2025-04-25 13:57:06,300 - INFO - Running scheduled job at 2025-04-25 13:57:06
+2025-04-25 13:57:06,300 - INFO - Starting bird analysis...
+2025-04-25 13:57:11,429 - INFO - analyze.py executed successfully.
+2025-04-25 13:57:11,588 - INFO - insertDb.py executed successfully.
+2025-04-25 13:57:11,588 - INFO - Bird analysis cycle completed.
+2025-04-25 13:57:11,589 - INFO - Scheduled job finished at 2025-04-25 13:57:06
+2025-04-25 13:57:11,589 - INFO - Bird watching service started.
+2025-04-25 13:58:11,604 - INFO - Running scheduled job at 2025-04-25 13:58:11
+2025-04-25 13:58:11,604 - INFO - Starting bird analysis...
+2025-04-25 13:58:16,759 - INFO - analyze.py executed successfully.
+2025-04-25 13:58:16,900 - INFO - insertDb.py executed successfully.
+2025-04-25 13:58:16,901 - INFO - Bird analysis cycle completed.
+2025-04-25 13:58:16,901 - INFO - Scheduled job finished at 2025-04-25 13:58:11
+2025-04-25 13:59:16,920 - INFO - Running scheduled job at 2025-04-25 13:59:16
+2025-04-25 13:59:16,920 - INFO - Starting bird analysis...
+2025-04-25 13:59:22,269 - INFO - analyze.py executed successfully.
+2025-04-25 13:59:22,401 - INFO - insertDb.py executed successfully.
+2025-04-25 13:59:22,401 - INFO - Bird analysis cycle completed.
+2025-04-25 13:59:22,401 - INFO - Scheduled job finished at 2025-04-25 13:59:16
+2025-04-25 14:02:17,922 - INFO - Running scheduled job at 2025-04-25 14:02:17
+2025-04-25 14:02:17,922 - INFO - Starting bird analysis...
+2025-04-25 14:02:31,154 - INFO - analyze.py executed successfully.
+2025-04-25 14:02:32,100 - INFO - insertDb.py executed successfully.
+2025-04-25 14:02:32,101 - INFO - Bird analysis cycle completed.
+2025-04-25 14:02:32,101 - INFO - Scheduled job finished at 2025-04-25 14:02:17
+2025-04-25 14:02:32,101 - INFO - Bird watching service started.
